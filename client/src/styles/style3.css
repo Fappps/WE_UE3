@@ -8,9 +8,6 @@
 
 body {
     margin: 0;
-}
-
-app-root {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -34,7 +31,7 @@ body, input, button, select {
  * Header
  */
 
-header.bannerheader {
+header {
     padding: 12px;
     margin-bottom: 10px;
     display: flex;
@@ -108,9 +105,9 @@ footer {
 }
 
 .form .error-text {
-    margin: 0;
     font-size: 0.8em;
     color: red;
+    display: none;
 }
 
 .form-row {
@@ -163,7 +160,7 @@ footer {
     background: linear-gradient(to bottom, #1883AF 0%, #194AB2 50%);
 }
 
-.button:disabled {
+form:invalid .button, .button:disabled {
     color: #333;
     border: 1px solid #999;
     background: linear-gradient(to bottom, #ccc 0%, #999 100%);

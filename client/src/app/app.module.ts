@@ -5,9 +5,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
-import {AppComponent, AvailableDeviceComponent, DiagramComponent} from './components';
+import {AppComponent, AvailableDeviceComponent, DiagramComponent, LoginComponent, OverviewComponent} from './components';
 import {DiagramService} from './services';
 import {MaxValidator, MinValidator} from './validators';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   imports: [
@@ -15,14 +16,17 @@ import {MaxValidator, MinValidator} from './validators';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    NgxChartsModule
+    NgxChartsModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
     AvailableDeviceComponent,
     DiagramComponent,
     MaxValidator,
-    MinValidator
+    MinValidator,
+    LoginComponent,
+    OverviewComponent
   ],
   providers: [
     DiagramService

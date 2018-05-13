@@ -21,6 +21,7 @@
     app.use(bodyParser.json());
     app.use(cors());
 
+    //let devices = JSON.parse(fs.readFileSync(__dirname + 'resources/devices.json'));
     // TODO add REST methods
 
     /**
