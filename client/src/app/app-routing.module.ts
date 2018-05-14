@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { componentFactoryName } from '@angular/compiler';
 import { LoginComponent } from './components/login/login.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { LoginGuard } from './login.guard';
 
 const routes: Routes = [  
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: "overview",
-    component: OverviewComponent
+    component: OverviewComponent,
+    canActivate: [LoginGuard]
   }
 
 ];

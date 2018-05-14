@@ -14,8 +14,8 @@
     const bodyParser = require("body-parser");
     const cors = require("cors");
 
-    let user;
-    let available;
+    let user={};
+    let available={};
 
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
@@ -38,6 +38,7 @@
      * @param res The response
      */
     function getAvailable(req, res) {
+        //console.log(available);
         res.json(available);
     }
 
@@ -48,6 +49,7 @@
      */
     function authenticate(req, res) {
         // TODO check credentials and respond to client accordingly
+        console.log(req);
         if(req.username === user.username && req.password === user.password){
             res.send("200", req.body);
         }
@@ -70,7 +72,10 @@
      */
     function readUser() {
         // TODO load user data from file
-        this.user=require('resources/login.config');
+        fs.readFile('./resources/login.config', 'utf8', (err, data) =>{
+            user.username=data.split("\r\n")[0].replace("username: ", "");
+            user.password=data.split("\r\n")[1].replace("password: ", "");
+        });
     }
 
     /**
@@ -78,7 +83,10 @@
      */
     function readAvailable() {
         // TODO load available devices from file
-        this.available = JSON.parse(fs.readFileSync("resources/devices.json")); 
+        fs.readFile("./resources/devices.json", (err, data) =>{
+            available = JSON.parse(data);
+            //console.log(available);
+        }); 
     }
 
     const server = app.listen(8081, () => {

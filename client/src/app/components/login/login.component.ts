@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -7,14 +8,21 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  username: string;
+  password: string;
+
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log("hi");
-    this.router.navigate(["overview"]);
+    this.http.get('http://localhost:8081/overview',
+    {
+      params: {username:this.username, password: this.password}
+    }).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
