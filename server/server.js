@@ -24,13 +24,21 @@
     //let devices = JSON.parse(fs.readFileSync(__dirname + 'resources/devices.json'));
     // TODO add REST methods
 
+    app.get("/overview", (req, res) => {
+        authenticate(req, res);
+    });
+
+    app.get("/details/:id", (req, res) => {
+        
+    })
+
     /**
      * Send the list of available devices to the client
      * @param req The request
      * @param res The response
      */
     function getAvailable(req, res) {
-        // TODO send list of available devices to the client
+        res.json(available);
     }
 
     /**
@@ -40,6 +48,9 @@
      */
     function authenticate(req, res) {
         // TODO check credentials and respond to client accordingly
+        if(req.username === user.username && req.password === user.password){
+            res.send("200", req.body);
+        }
     }
 
     /**
@@ -49,6 +60,9 @@
      */
     function changePassword(req, res) {
         // TODO check old password and store new password
+        if(req.password===user.password){
+            user.password=req.newPassword;
+        }
     }
 
     /**
@@ -56,6 +70,7 @@
      */
     function readUser() {
         // TODO load user data from file
+        this.user=require('resources/login.config');
     }
 
     /**
@@ -63,9 +78,10 @@
      */
     function readAvailable() {
         // TODO load available devices from file
+        this.available = JSON.parse(fs.readFileSync("resources/devices.json")); 
     }
 
-    const server = app.listen(8081, function() {
+    const server = app.listen(8081, () => {
         readUser();
         readAvailable();
 
