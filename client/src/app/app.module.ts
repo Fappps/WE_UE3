@@ -6,9 +6,10 @@ import {FormsModule} from '@angular/forms';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import {AppComponent, AvailableDeviceComponent, DiagramComponent, LoginComponent, OverviewComponent} from './components';
-import {DiagramService} from './services';
+import {DiagramService, UserService} from './services';
 import {MaxValidator, MinValidator} from './validators';
 import {AppRoutingModule} from './app-routing.module';
+import { LoginGuard } from './login.guard';
 
 @NgModule({
   imports: [
@@ -29,7 +30,9 @@ import {AppRoutingModule} from './app-routing.module';
     OverviewComponent
   ],
   providers: [
-    DiagramService
+    DiagramService,
+    UserService,
+    LoginGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -17,12 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    this.http.get('http://localhost:8081/overview',
-    {
-      params: {username:this.username, password: this.password}
-    }).subscribe(data => {
-      console.log(data);
-    });
+    this.router.navigate(["overview"]);
   }
 
 }

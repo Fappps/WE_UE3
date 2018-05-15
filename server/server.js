@@ -24,7 +24,7 @@
     //let devices = JSON.parse(fs.readFileSync(__dirname + 'resources/devices.json'));
     // TODO add REST methods
 
-    app.get("/overview", (req, res) => {
+    app.post("/login", (req, res) => {
         authenticate(req, res);
     });
 
@@ -49,10 +49,13 @@
      */
     function authenticate(req, res) {
         // TODO check credentials and respond to client accordingly
-        console.log(req);
-        if(req.username === user.username && req.password === user.password){
+        console.log(req.body);
+        res.send("200");
+        /*
+        if(req.body.username === user.username && req.body.password === user.password){
             res.send("200", req.body);
         }
+        */
     }
 
     /**
