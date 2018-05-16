@@ -6,13 +6,12 @@ export class UserService {
   user 
 
   constructor(private http: HttpClient) { }
-  correctLogin(cb){
+  correctLogin(){
       this.http.post("http://localhost:8081/login",{}).subscribe(data => {
         if(data==200){
-          cb(null, true);
-          return;
+          return true
         }
-        cb(null, false);
+        return false;
       });
   }
 }
