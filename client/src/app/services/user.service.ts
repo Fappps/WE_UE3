@@ -9,7 +9,7 @@ export class UserService {
   correctLogin(){
       this.http.post("http://localhost:8081/login",{}).subscribe(data => {
         if(data==200){
-          return true
+          return true;
         }
         return false;
       });

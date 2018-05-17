@@ -10,12 +10,14 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      
+      return true;
+      /*
       if(this.user.correctLogin()){
         return true;
       }else{
         window.alert("Falscher Benutzername oder Passwort!")
       }
+      */
   }
   
   
