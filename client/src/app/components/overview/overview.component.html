@@ -48,18 +48,8 @@
             </li>
         </ul>
         <h2 id="elementsheadline">Verfügbare Elemente</h2>
-        <ul id="devices"  class="device-list draggables">
-            <li app-available-device [data]='{
-                "title": "3D-Drucker",
-                "type": "item-generator",
-                "image": "images/item_generator.svg",
-                "control": {
-                  "title": "Produktfortschritt einstellen",
-                  "type": "enum",
-                  "current": "Teilweise fertig",
-                  "log":[]
-                }
-              }'>
+        <ul id="devices"  class="device-list draggables" *ngFor="let device of devices">
+            <li app-available-device [data]="device" >
             </li>
         </ul>
     </aside>
@@ -74,7 +64,7 @@
             </div>
         </div>
 
-        <app-diagram></app-diagram>
+        <app-diagram [arrowAdd]="arrow"></app-diagram>
 
         <form id="controls" class="device-controls">
             <div class="form-row">

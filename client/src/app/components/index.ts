@@ -5,3 +5,4 @@ export * from './diagram/diagram.component';
 export * from './login/login.component';
 export * from './overview/overview.component';
 export * from './options/options.component';
+export * from './details/details.component';

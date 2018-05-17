@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AvailableDevice } from '../../models/device.available';
 import { ControlType } from '../../models';
+import { DiagramService } from '../../services';
 
 @Component({
   selector: 'app-overview',
@@ -9,7 +10,7 @@ import { ControlType } from '../../models';
 })
 export class OverviewComponent implements OnInit {
   devices: AvailableDevice[]=[];
-  constructor(private router: Router) { }
+  constructor(private router: Router, private diagramService:DiagramService) { }
 
   ngOnInit() {
     this.devices.push({
@@ -19,7 +20,7 @@ export class OverviewComponent implements OnInit {
       "control": {
         "title": "Produktfortschritt einstellen",
         "type": ControlType.ENUM,
-        "current": "Teilweise fertig",
+        "current": "Fertig",
         "log":[]
       }
     });
