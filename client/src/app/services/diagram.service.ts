@@ -6,11 +6,10 @@ import '../models/device.model';
 
 @Injectable()
 export class DiagramService {
-  devices: Device<any>[];
-  arrows: Arrow[];
+  devices: Device<any>[]=[];
+  arrows: Arrow[]=[];
   
-  constructor(/* TODO inject other services or core classes if necessary */
-    private http:HttpClient) {
+  constructor(private http:HttpClient) {
   }
 
   initDevices(func: (device: Device<any>) => void): void {

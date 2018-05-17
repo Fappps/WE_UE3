@@ -4,6 +4,7 @@ import { componentFactoryName } from '@angular/compiler';
 import { LoginComponent } from './components/login/login.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { LoginGuard } from './login.guard';
+import { OptionsComponent } from './components';
 
 const routes: Routes = [  
   {
@@ -16,6 +17,16 @@ const routes: Routes = [
   },
   {
     path: "overview",
+    component: OverviewComponent,
+    canActivate: [LoginGuard]
+  },  
+  {
+    path: "options",
+    component: OptionsComponent,
+    canActivate: [LoginGuard]
+  },  
+  {
+    path: "details",
     component: OverviewComponent,
     canActivate: [LoginGuard]
   }

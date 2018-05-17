@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
-import {AppComponent, AvailableDeviceComponent, DiagramComponent, LoginComponent, OverviewComponent} from './components';
+import {AppComponent, AvailableDeviceComponent, DiagramComponent, LoginComponent, OverviewComponent, OptionsComponent} from './components';
 import {DiagramService, UserService} from './services';
 import {MaxValidator, MinValidator} from './validators';
 import {AppRoutingModule} from './app-routing.module';
@@ -27,7 +27,8 @@ import { LoginGuard } from './login.guard';
     MaxValidator,
     MinValidator,
     LoginComponent,
-    OverviewComponent
+    OverviewComponent,
+    OptionsComponent
   ],
   providers: [
     DiagramService,

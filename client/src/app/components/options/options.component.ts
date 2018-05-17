@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html'
+  selector: 'app-options',
+  templateUrl: './options.component.html'
 })
-export class OverviewComponent implements OnInit {
+export class OptionsComponent implements OnInit {
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    
   }
 
   logout(){
