@@ -83,8 +83,6 @@
      */
     function changePassword(req, res) {
         // TODO check old password and store new password
-        console.log(req.body.change.oldPassword === user.password);
-        console.log(req.body.change.newPassword);
         if (req.body.change.oldPassword === user.password) {
             let userdata=fs.readFileSync("./resources/login.config", 'utf8');
             userdata=userdata.replace(user.password, req.body.change.newPassword);
