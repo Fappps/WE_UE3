@@ -4,7 +4,7 @@
 
 /* global require */
 
-(function() {
+(function () {
     "use strict";
 
     const express = require("express");
@@ -13,11 +13,14 @@
 
     const bodyParser = require("body-parser");
     const cors = require("cors");
+    const jwt = require("jsonwebtoken");
+    const q = require("q");
+    let user = {};
+    let available = {};
 
-    let user={};
-    let available={};
-
-    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
     app.use(bodyParser.json());
     app.use(cors());
 
@@ -25,12 +28,22 @@
     // TODO add REST methods
 
     app.post("/login", (req, res) => {
-        authenticate(req, res);
+        authenticate(req, res)
+        .then(response => {
+            if(response){
+                console.log(response);
+                res.send(response);
+            }else{
+                res.status(400).send('Username oder Passwort inkorrekt!');
+            }
+        });
     });
 
+    app.get("/overview", getAvailable);
+
     app.get("/details/:id", (req, res) => {
-        
-    })
+
+    });
 
     /**
      * Send the list of available devices to the client
@@ -49,13 +62,18 @@
      */
     function authenticate(req, res) {
         // TODO check credentials and respond to client accordingly
-        console.log(req.body);
-        res.send("200");
-        /*
-        if(req.body.username === user.username && req.body.password === user.password){
-            res.send("200", req.body);
+        let deferred = q.defer();
+
+        if(req.body.user.username==user.username && req.body.user.password==user.password){
+            deferred.resolve({
+                username: user.username,
+                token: jwt.sign({sub: user.username }, user.password)
+            });
+        }else{
+            deferred.resolve();
         }
-        */
+
+        return deferred.promise;
     }
 
     /**
@@ -65,8 +83,8 @@
      */
     function changePassword(req, res) {
         // TODO check old password and store new password
-        if(req.password===user.password){
-            user.password=req.newPassword;
+        if (req.password === user.password) {
+            this.user.password = req.newPassword;
         }
     }
 
@@ -75,9 +93,9 @@
      */
     function readUser() {
         // TODO load user data from file
-        fs.readFile('./resources/login.config', 'utf8', (err, data) =>{
-            user.username=data.split("\r\n")[0].replace("username: ", "");
-            user.password=data.split("\r\n")[1].replace("password: ", "");
+        fs.readFile('./resources/login.config', 'utf8', (err, data) => {
+            user.username = data.split("\r\n")[0].replace("username: ", "");
+            user.password = data.split("\r\n")[1].replace("password: ", "");
         });
     }
 
@@ -86,10 +104,10 @@
      */
     function readAvailable() {
         // TODO load available devices from file
-        fs.readFile("./resources/devices.json", (err, data) =>{
+        fs.readFile("./resources/devices.json", (err, data) => {
             available = JSON.parse(data);
             //console.log(available);
-        }); 
+        });
     }
 
     const server = app.listen(8081, () => {

@@ -3,13 +3,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import '../models/arrow.model';
 import '../models/device.model';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class DiagramService {
   devices: Device<any>[]=[];
   arrows: Arrow[]=[];
   
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient, private router:Router) {
   }
 
   initDevices(func: (device: Device<any>) => void): void {
@@ -38,14 +39,17 @@ export class DiagramService {
 
   onDeviceDetails(device: Device<any>): void {
     // TODO navigate to the details view for the given device
+    this.router.navigate(["/details/"+device.index]);
     
   }
 
   afterArrowAdd(arrow: Arrow): void {
     // TODO add the arrow to some list
+    this.arrows.push(arrow);
   }
 
   afterArrowDelete(arrow: Arrow): void {
     // TODO remove the arrow from that list
+    this.arrows.splice(this.arrows.indexOf(arrow),1);
   }
 }

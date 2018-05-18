@@ -10,7 +10,9 @@ import { DiagramService } from '../../services';
 })
 export class OverviewComponent implements OnInit {
   devices: AvailableDevice[]=[];
-  constructor(private router: Router, private diagramService:DiagramService) { }
+  constructor(private router: Router, private diagramService:DiagramService) {
+    
+   }
 
   ngOnInit() {
     this.devices.push({

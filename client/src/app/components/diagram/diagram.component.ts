@@ -36,4 +36,8 @@ export class DiagramComponent implements AfterViewInit, OnDestroy {
       this.diagram = null;
     }
   }
+
+  details(){
+    
+  }
 }

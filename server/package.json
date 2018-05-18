@@ -8,9 +8,11 @@
   },
   "private": true,
   "dependencies": {
-    "express": "^4.15.2",
+    "body-parser": "^1.17.1",
     "cors": "^2.8.3",
-    "body-parser": "^1.17.1"
+    "express": "^4.15.2",
+    "jsonwebtoken": "^8.2.1",
+    "q": "^1.5.1"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

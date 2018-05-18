@@ -1,17 +1,32 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+import { AuthenticationRequest } from '../models';
 
 @Injectable()
 export class UserService {
-  user 
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-  correctLogin(){
-      this.http.post("http://localhost:8081/login",{}).subscribe(data => {
-        if(data==200){
-          return true;
+  login(user: AuthenticationRequest) {
+    return this.http.post<any>("http://localhost:8081/login", {user})
+    .map(response => {
+        // login successful if there's a jwt token in the response
+        if (response && response.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(response));
+          console.log("eingeloggt" + localStorage);
+        }else{
+          console.log(response);
         }
-        return false;
+
+        return response;
       });
+  }
+
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    console.log("ausgeloggt" + localStorage)
   }
 }
