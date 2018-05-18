@@ -48,8 +48,8 @@
             </li>
         </ul>
         <h2 id="elementsheadline">Verfügbare Elemente</h2>
-        <ul id="devices"  class="device-list draggables" *ngFor="let device of devices">
-            <li app-available-device [data]="device" >
+        <ul id="devices"  class="device-list draggables">
+            <li app-available-device [data]="device" *ngFor="let device of devices">
             </li>
         </ul>
     </aside>

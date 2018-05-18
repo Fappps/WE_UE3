@@ -51,7 +51,7 @@
      * @param res The response
      */
     function getAvailable(req, res) {
-        //console.log(available);
+        console.log(available);
         res.json(available);
     }
 

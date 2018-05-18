@@ -10,7 +10,7 @@ export class DiagramService {
   devices: Device<any>[]=[];
   arrows: Arrow[]=[];
   
-  constructor(private http:HttpClient, private router:Router) {
+  constructor(private router:Router) {
   }
 
   initDevices(func: (device: Device<any>) => void): void {
