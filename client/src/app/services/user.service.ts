@@ -34,15 +34,6 @@ export class UserService {
   changePassword(change: PasswordChangeRequest){
     return this.http.post<any>("http://localhost:8081/options", {change})
     .map(response => {
-        // login successful if there's a jwt token in the response
-        if (response && response.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(response));
-          console.log("eingeloggt" + localStorage);
-        }else{
-          console.log(response);
-        }
-
         return response;
       });
   }
