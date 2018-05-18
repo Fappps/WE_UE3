@@ -52,4 +52,8 @@ export class DiagramService {
     // TODO remove the arrow from that list
     this.arrows.splice(this.arrows.indexOf(arrow),1);
   }
+
+  printDevices(){
+    console.log(this.devices);
+  }
 }

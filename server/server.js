@@ -31,13 +31,14 @@
         authenticate(req, res)
         .then(response => {
             if(response){
-                console.log(response);
                 res.send(response);
             }else{
                 res.status(400).send('Username oder Passwort inkorrekt!');
             }
         });
     });
+
+    app.post("/options", changePassword);
 
     app.get("/overview", getAvailable);
 
@@ -51,7 +52,6 @@
      * @param res The response
      */
     function getAvailable(req, res) {
-        console.log(available);
         res.json(available);
     }
 
@@ -83,8 +83,16 @@
      */
     function changePassword(req, res) {
         // TODO check old password and store new password
-        if (req.password === user.password) {
-            this.user.password = req.newPassword;
+        console.log(req.body.change.oldPassword === user.password);
+        console.log(req.body.change.newPassword);
+        if (req.body.change.oldPassword === user.password) {
+            let userdata=fs.readFileSync("./resources/login.config", 'utf8');
+            userdata=userdata.replace(user.password, req.body.change.newPassword);
+            user.password=req.body.change.newPassword;
+            fs.writeFileSync("./resources/login.config", userdata);
+            res.json("Passwort geaendert!");
+        }else{
+            res.status(400).send("Passwort stimmt nicht ueberein!");
         }
     }
 
