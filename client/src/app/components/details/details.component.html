@@ -2,7 +2,7 @@
     <a href="#deviceheadline">Zum Inhalt springen</a>
 </div>
 
-<header aria-labelledby="bannerheadline">
+<header class="bannerheader" aria-labelledby="bannerheadline">
     <a href="overview.html">
         <img class="title-image" src="images/big-logo-small.png" title="BIG Smart Production Logo"
              alt="BIG Smart Production Logo">
@@ -18,9 +18,9 @@
             </li>
             <li class="nav-items">
                 <ul>
-                    <li><a href="overview.html" class="button" accesskey="1">Übersicht</a></li>
-                    <li><a href="options.html" class="button" accesskey="2">Optionen</a></li>
-                    <li><a href="login.html" class="button" accesskey="3">Abmelden</a></li>
+                    <li><a routerLink="/overview" class="button" accesskey="1">Übersicht</a></li>
+                    <li><a routerLink="/options" class="button" accesskey="2">Optionen</a></li>
+                    <li><a (click)="logout()" class="button" accesskey="3">Abmelden</a></li>
                 </ul>
             </li>
         </ul>

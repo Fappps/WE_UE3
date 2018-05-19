@@ -11,6 +11,43 @@ body {
 }
 
 app-root {
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 290px;
+    background: linear-gradient(to bottom, #fbfcfd 0%, #d3d8e8 100%);
+}
+
+app-login{
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 290px;
+    background: linear-gradient(to bottom, #fbfcfd 0%, #d3d8e8 100%);
+}
+
+app-overview{
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 290px;
+    background: linear-gradient(to bottom, #fbfcfd 0%, #d3d8e8 100%);
+}
+
+app-options{
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 290px;
+    background: linear-gradient(to bottom, #fbfcfd 0%, #d3d8e8 100%);
+}
+
+app-details{
+    
     display: flex;
     flex-direction: column;
     min-height: 100vh;
