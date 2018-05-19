@@ -18,6 +18,7 @@ export class OptionsComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit() {
+    
   }
 
   logout(){

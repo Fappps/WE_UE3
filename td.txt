@@ -1,0 +1,31 @@
+todo:
+
+label
+bugfix beim auswählen
+
+
+validation beim options , validation methode die überprüft
+
+
+css fixen 
+
+vor der abgabe abgeben
+
+
+
+
+<19:51:47> "stani": (ngSubmit)="f.form.valid && login()" #f="ngForm"
+<19:51:53> "stani": <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+<20:03:47> "stani": 1. variable valid
+<20:04:08> "stani": 2. validation methode schreiben
+<20:04:40> "stani": 3. im init validation methode aufrufen . subscribe(data => { valid=data})
+
+
+
+overview values ändern bei form click
+
+line endings
+
+detail ansicht 
+
+beim login span anzeigen

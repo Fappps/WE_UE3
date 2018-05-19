@@ -7,9 +7,10 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import {AppComponent, AvailableDeviceComponent, DiagramComponent, LoginComponent, OverviewComponent, OptionsComponent, DetailsComponent} from './components';
 import {DiagramService, UserService} from './services';
-import {MaxValidator, MinValidator} from './validators';
+import {MaxValidator, MinValidator,ConfirmEqualValidatorDirective } from './validators';
 import {AppRoutingModule} from './app-routing.module';
 import { LoginGuard } from './login.guard';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,9 @@ import { LoginGuard } from './login.guard';
     LoginComponent,
     OverviewComponent,
     OptionsComponent,
-    DetailsComponent
+    DetailsComponent,
+    FooterComponent,
+    ConfirmEqualValidatorDirective
   ],
   providers: [
     DiagramService,

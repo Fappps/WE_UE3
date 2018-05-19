@@ -24,40 +24,42 @@
         </ul>
     </nav>
 </header>
-
 <div class="main-container">
     <main aria-labelledby="formheadline">
-        <form class="form form-horizontal" (ngSubmit)="changePassword()">
+        <form class="form form-horizontal" (ngSubmit)="changePassword()" #optionsForm="ngForm">
             <h2 id="formheadline" class="options-headline">Passwort ändern</h2>
             <div class="form-row">
                 <label class="form-label" for="old-password-input">Altes Passwort</label>
                 <input type="password" class="form-input" name="password" id="old-password-input"
                        placeholder="Altes Passwort" required autocomplete="current-password"
-                       [(ngModel)]="changeRequest.oldPassword">
+                       [(ngModel)]="changeRequest.oldPassword" #password="ngModel">
                 <span id="old-password-error" class="error-text"></span>
             </div>
             <div class="form-row">
                 <label class="form-label" for="new-password-input">Neues Passwort</label>
-                <input type="password" class="form-input" name="password" id="new-password-input"
-                       placeholder="Neues Passwort" required minlength="8" maxlength="12"
+                <input type="password" class="form-input" name="newPassword" id="new-password-input"
+                       placeholder="Neues Passwort" required minlength="8" maxlength="12" (change)="repeatPassword.control.updateValueAndValidity()"
                        autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}"
                        title="8-12 Zeichen, jeweils mindestens ein Großbuchstabe, Kleinbuchstabe und eine Zahl"
-                       [(ngModel)]="changeRequest.newPassword">
+                       [(ngModel)]="changeRequest.newPassword" #newPassword="ngModel">
+                       <div *ngIf="newPassword.touched && newPassword.invalid"><span id="new-password-error" class="error-text">New Password is not valid</span></div>
             </div>
             <div class="form-row">
                 <label class="form-label" for="repeat-password-input">Passwort wiederholen</label>
-                <input type="password" class="form-input" name="password" id="repeat-password-input"
-                       placeholder="Neues Passwort wiederholen" required minlength="8" maxlength="12"
-                       autocomplete="new-password">
-                <span id="new-password-error" class="error-text"></span>
+                <input type="password" class="form-input" name="repeatPassword" id="repeat-password-input"
+                       placeholder="Neues Passwort wiederholen" required appConfirmEqualValidator="newPassword"
+                       autocomplete="new-password" [(ngModel)]="repeatPasswordText" #repeatPassword="ngModel">
+                       <div *ngIf="(repeatPassword.touched||repeatPassword.dirty) && repeatPassword.errors?.notEqual">
+                       <span id="new-password-error" class="error-text">Passwords not equal</span>
+                </div>
             </div>
             <div class="form-row form-row-center">
-                <button id="save-changes-button" class="button button-submit">Änderung speichern</button>
+                <button id="save-changes-button" class="button button-submit" [disabled]="!optionsForm.form.valid">Änderung speichern</button>
             </div>
         </form>
     </main>
 </div>
-
+{{repeatPassword.className}}
 <footer>
     © 2018 <abbr title="Business Informatics Group">BIG</abbr> Smart Production
 </footer>
